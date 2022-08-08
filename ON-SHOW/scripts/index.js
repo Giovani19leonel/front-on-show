@@ -20,7 +20,8 @@ var b = fetch("../dados.json").then(function (response) {
 
 function main() {
     GetFilmesCarrrossel();
-    ultimos_add();
+    GetFilmesPopulares();
+    GetLastFilmes();
     MenuListener();
     radionsListener();
     BotoesListener();
@@ -33,8 +34,59 @@ function GetFilmesPopulares() {
     filmesPopulares.onload = function () { populateHeader(filmesPopulares.response); }
 }
 function GetFilmesCarrrossel() {
-    var filmesCarrrossel = HttpRequest('https://localhost:8001/main/Carousel');
+    var filmesCarrrossel = HttpRequest('https://localhost:8001/main/carousel');
     filmesCarrrossel.onload = function () { AddImgCarrossel(filmesCarrrossel.response); }
+}
+function GetLastFilmes() {
+    var lastFilmes = HttpRequest('https://localhost:8001/main/filmes/last')
+    lastFilmes.onload = function () { AddLastFilmes(lastFilmes.response) }
+}
+function AddLastFilmes(jsonObj) {
+    for (let i = 0; i < 7; i++) {
+        let li = $("<li/>", {
+            class: "item-populares",
+            id: "fila-um-populares-" + i
+        });
+        $("#lista-um-adicionados").append(li);
+    }
+    for (let i = 0; i < 6; i++) {
+        let img = $("<img/>", {
+            src: jsonObj[i]['catalogo']
+        });
+        let titulo = $("<h1 class=ultimosTitulosFilmes>" + jsonObj[i]['titulo'] + "</h1>");
+        $("#fila-um-populares-" + i).append(img)
+        $("#fila-um-populares-" + i).append(titulo)
+    }
+    for (let i = 0; i < 7; i++) {
+        let li = $("<li/>", {
+            class: "item-populares",
+            id: "fila-dois-populares-" + i
+        });
+        $("#lista-dois-adicionados").append(li);
+    }
+    for (let i = 6; i < 12; i++) {
+        let img = $("<img/>", {
+            src: jsonObj[i]['catalogo']
+        });
+        let titulo = $("<h1 class=ultimosTitulosFilmes>" + jsonObj[i]['titulo'] + "</h1>");
+        $("#fila-dois-populares-" + (i - 6)).append(img)
+        $("#fila-dois-populares-" + (i - 6)).append(titulo)
+    }
+    for (let i = 0; i < 7; i++) {
+        let li = $("<li/>", {
+            class: "item-populares",
+            id: "fila-tres-populares-" + i
+        });
+        $("#lista-tres-adicionados").append(li);
+    }
+    for (let i = 12; i < 18; i++) {
+        let img = $("<img/>", {
+            src: jsonObj[i]['catalogo']
+        });
+        let titulo = $("<h1 class=ultimosTitulosFilmes>" + jsonObj[i]['titulo'] + "</h1>");
+        $("#fila-tres-populares-" + (i - 12)).append(img)
+        $("#fila-tres-populares-" + (i - 12)).append(titulo)
+    }
 }
 function AddImgCarrossel(jsonObj) {
     console.log(jsonObj[3]['titulo'])
@@ -52,6 +104,51 @@ function HttpRequest(requestURL) {
     return request
 }
 function populateHeader(jsonObj) {
+    
+    for (let i = 0; i < 2; i++) {
+        let div = $("<div/>", {
+            class: "div-populares-" + i,
+            id: "div-populares-um-fila-" + i
+        });
+        $("#populares-fila-um").append(div);
+    }
+    for (let i = 0; i < 3; i++) {
+        let li = $("<li/>", {
+            class: "item-populares",
+            id: "populares-um-" + i
+        });
+        $("#div-populares-um-fila-0").append(li);
+    }
+    for (let i = 3; i < 6; i++) {
+        let li = $("<li/>", {
+            class: "item-populares",
+            id: "populares-um-" + i
+        });
+        $("#div-populares-um-fila-1").append(li);
+    }
+    for (let i = 0; i < 2; i++) {
+        let div = $("<div/>", {
+            class: "div-populares-" + i,
+            id: "div-populares-dois-fila-" + i
+        });
+        $("#populares-fila-dois").append(div);
+    }
+    for (let i = 6; i < 9; i++) {
+        let li = $("<li/>", {
+            class: "item-populares",
+            id: "populares-dois-" + i
+        });
+
+        $("#div-populares-dois-fila-0").append(li);
+    }
+    for (let i = 9; i < 12; i++) {
+        let li = $("<li/>", {
+            class: "item-populares",
+            id: "populares-dois-" + i
+        });
+
+        $("#div-populares-dois-fila-1").append(li);
+    }
     jsonObj.forEach(element => {
         if(jsonObj.indexOf(element) < 6)
         {
@@ -72,177 +169,6 @@ function populateHeader(jsonObj) {
             $("#populares-dois-" + jsonObj.indexOf(element)).append(titulo)
         }
     });(jsonObj.length)
-}
-function ultimos_add() {
-    fetch("../dados.json").then(function (response) {
-        return response.json()
-    }).then(function (data) {
-        // DADOS: 
-        let titulos_filmes = [];
-        let titulos_filmes_populares = [];
-        let catalogo_filmes = [];
-        let genero_filmes = [];
-        let lista_id = [];
-
-        dados = data.descricao
-        for (let i = 0; i < dados.length; i++) {
-            let filmes = dados[i].genero.split("/")
-            filmes.push(dados[i].id)
-            genero_filmes.push(filmes)
-            catalogo_filmes.push(dados[i].catalogo)
-
-        }
-        for (let i = 0; i < dados.length; i++) {
-            for (let j = 0; j < 2; j++) {
-                if (genero_filmes[i][j] == "Ação") {
-                    let filme_id = genero_filmes[i][2]
-                    lista_id.push(filme_id)
-                }
-                if (i == dados.length - 1 && j == 1) {
-                    lista_acao = [lista_id, catalogo_filmes]
-                    console.log(lista_acao[0][5])
-                }
-                /* if (genero_filmes[i][j] == "Aventura") {
-                    let filme_id = genero_filmes[i][2]
-                    lista_aventura.push(filme_id)
-                }
-                if (genero_filmes[i][j] == "Comédia") {
-                    let filme_id = genero_filmes[i][2]
-                    lista_comedia.push(filme_id)
-                }
-                if (genero_filmes[i][j] == "Drama") {
-                    let filme_id = genero_filmes[i][2]
-                    lista_drama.push(filme_id)
-                }
-                if (genero_filmes[i][j] == "Romance") {
-                    let filme_id = genero_filmes[i][2]
-                    lista_romance.push(filme_id)
-                }
-                if (genero_filmes[i][j] == "Suspense") {
-                    let filme_id = genero_filmes[i][2]
-                    lista_suspense.push(filme_id)
-                }
-                if (genero_filmes[i][j] == "Terror") {
-                    let filme_id = genero_filmes[i][2]
-                    lista_terror.push(filme_id)
-                } */
-            }
-        }
-
-        for (let i = 0; i < data.populares.length; i++) {
-            let lista = [data.populares[i].id, data.populares[i].catalogo]
-            filmes_populares.push(lista)
-            titulos_filmes_populares.push(data.populares[i].titulo)
-        }
-
-        for (let i = 0; i < dados.length; i++) {
-            titulos_filmes.push(dados[i].titulo)
-            catalogo_filmes.push(dados[i].catalogo)
-        }
-        for (let i = 0; i < 2; i++) {
-            let div = $("<div/>", {
-                class: "div-populares-" + i,
-                id: "div-populares-um-fila-" + i
-            });
-            $("#populares-fila-um").append(div);
-        }
-        for (let i = 0; i < 3; i++) {
-            let li = $("<li/>", {
-                class: "item-populares",
-                id: "populares-um-" + i
-            });
-            $("#div-populares-um-fila-0").append(li);
-            /*  console.log(i) */
-        }
-        for (let i = 3; i < 6; i++) {
-            let li = $("<li/>", {
-                class: "item-populares",
-                id: "populares-um-" + i
-            });
-            $("#div-populares-um-fila-1").append(li);
-            /*  console.log(i) */
-        }
-        for (let i = 0; i < 2; i++) {
-            let div = $("<div/>", {
-                class: "div-populares-" + i,
-                id: "div-populares-dois-fila-" + i
-            });
-            $("#populares-fila-dois").append(div);
-        }
-        for (let i = 6; i < 9; i++) {
-            let li = $("<li/>", {
-                class: "item-populares",
-                id: "populares-dois-" + i
-            });
-
-            $("#div-populares-dois-fila-0").append(li);
-        }
-        for (let i = 9; i < 12; i++) {
-            let li = $("<li/>", {
-                class: "item-populares",
-                id: "populares-dois-" + i
-            });
-
-            $("#div-populares-dois-fila-1").append(li);
-        }
-
-        GetFilmesPopulares()
-
-        for (let i = (dados.length - 18); i < dados.length; i++) {
-            ultimos_adicionados.push(dados[i].catalogo)
-            titulo_ultimos_adicionados.push(titulos_filmes[i])
-        }
-
-        for (let i = 0; i < 7; i++) {
-            let li = $("<li/>", {
-                class: "item-populares",
-                id: "fila-um-populares-" + i
-            });
-
-            $("#lista-um-adicionados").append(li);
-        }
-        for (let i = 0; i < 6; i++) {
-            let img = $("<img/>", {
-                src: ultimos_adicionados[i]
-            });
-            let titulo = $("<h1 class=ultimosTitulosFilmes>" + titulo_ultimos_adicionados[i] + "</h1>");
-            $("#fila-um-populares-" + i).append(img)
-            $("#fila-um-populares-" + i).append(titulo)
-        }
-
-        for (let i = 0; i < 7; i++) {
-            let li = $("<li/>", {
-                class: "item-populares",
-                id: "fila-dois-populares-" + i
-            });
-            $("#lista-dois-adicionados").append(li);
-        }
-        for (let i = 6; i < 12; i++) {
-            let img = $("<img/>", {
-                src: ultimos_adicionados[i]
-            });
-            let titulo = $("<h1 class=ultimosTitulosFilmes>" + titulo_ultimos_adicionados[i] + "</h1>");
-            $("#fila-dois-populares-" + (i - 6)).append(img)
-            $("#fila-dois-populares-" + (i - 6)).append(titulo)
-        }
-
-        for (let i = 0; i < 7; i++) {
-            let li = $("<li/>", {
-                class: "item-populares",
-                id: "fila-tres-populares-" + i
-            });
-            $("#lista-tres-adicionados").append(li);
-        }
-        for (let i = 12; i < 18; i++) {
-            let img = $("<img/>", {
-                src: ultimos_adicionados[i]
-            });
-            let titulo = $("<h1 class=ultimosTitulosFilmes>" + titulo_ultimos_adicionados[i] + "</h1>");
-            $("#fila-tres-populares-" + (i - 12)).append(img)
-            $("#fila-tres-populares-" + (i - 12)).append(titulo)
-        }
-
-    });
 }
 function removerHome() {
     for (let i = 0; i < 7; i++) {
