@@ -189,7 +189,7 @@ function AddSearchFilmes(element=null) {
     {
         $("#div-search-cabecalho").append($("<img/>",
         {
-            src: "./icones/lupa.png",
+            src: "../icons/lupa.png",
             class: "icon-search",
             style: "width:55px; height:55px"
         }));
@@ -204,7 +204,7 @@ function AddSearchFilmes(element=null) {
     {
         $("#div-search-cabecalho").append($("<img/>",
         {
-            src: "./icones/filme.png",
+            src: "../icons/filme.png",
             class: "icon-search",
             style: "width:55px; height:55px"
         }));
@@ -1036,14 +1036,14 @@ function ListenerImgs() {
                     {
                         id: "icon-play",
                         class:"icon-play",
-                        src: "../icones/play.png",
+                        src: "../icons/play.png",
                         style: "z-index:1; position:absolute; height:80px; width:80px;"
                     }));
                     $(".icon-play").click(function(x) {
 
                             let titulo = $("#div-play").parent().children()[2].innerHTML;
                             localStorage.setItem('titulo-filme', JSON.stringify(titulo));
-                            window.location.href = 'http://127.0.0.1:5500/pagina2/filme.html';
+                            window.location.href = 'http://127.0.0.1:5500/views/filme.html';
                         });
                     $(".icon-play").mouseout(function(e)
                     {
@@ -1091,7 +1091,7 @@ async function GetFilmeCarrossel(catalogo) {
         {
             console.log(data.titulo);
             localStorage.setItem('titulo-filme', JSON.stringify(data.titulo));
-            window.location.href = 'http://127.0.0.1:5500/pagina2/filme.html';
+            window.location.href = 'http://127.0.0.1:5500/views/filme.html';
         })
         .catch((error) => 
         {

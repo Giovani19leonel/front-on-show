@@ -1,0 +1,475 @@
+html {
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+body {
+    background-color: black;
+    margin: auto;
+    height: 1000px;
+    width: 100vw;
+}
+
+main {
+    margin-top: 75px;
+    flex-direction: column;
+    display: none;
+}
+
+.main-home {
+    display: flex;
+}
+header {
+    width: 100vw;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 7;
+}
+
+.cabecalho {
+    display: flex;
+    background-color: #2F2F2F;
+    height: 75px;
+    align-items: center;
+    opacity: 0.8;
+    width: 99vw;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.menu-sanduiche {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.menu {
+    /* background-color: #111111;
+    opacity: 0; */
+    display: none;
+    color: rgb(255, 255, 255);
+    position: fixed;
+    margin-top: 32px;
+    margin-left: 0px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.change .menu {
+    display: flex;
+}
+
+.lista-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    opacity: 0;
+    background-color: #141212;
+    padding: 5px;
+    width: 145 px;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+hr {
+    border: 10px;
+    border-radius: 25px;
+    border-top: 1px solid #686868;
+}
+
+.change .lista-menu {
+    opacity: 100;
+    transition: 1s;
+}
+
+.container {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 25px;
+    /* position: fixed;
+    height: 39px; */
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+.div-titulo {
+    width: 100vw;
+    margin-right: -235px;
+    display: flex;
+    justify-content: center;
+}
+.titulo {
+    cursor: default;
+    font-family: 'Roboto';
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    width: 250px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.descricao-pesquisa {
+    display: flex;
+}
+
+.descricao h1 {
+    font-size: 25px;
+}
+
+.descricao p {
+    font-size: 20px;
+}
+
+.conteudo-pesquisa {
+    display: flex;
+    align-items: center;
+    margin-right: 35px;
+    cursor: text;
+}
+
+.conteudo-pesquisa h1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 25px;
+}
+
+.icone-pesquisa {
+    display: flex;
+    margin-left: 5px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+}
+
+.conteudo-pesquisa input {
+    border: 0px;
+    height: 35px;
+    width: 250px;
+    border-radius: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    padding-inline-start: 30px;
+    outline: 0;
+    cursor: pointer;
+}
+
+.div-populares-0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 50vw;
+}
+
+.div-populares-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 50vw;
+    margin-left: calc(((50vw - 600px)/4)*-1);
+}
+
+.filmes-populares {
+    margin-left: 5vw;
+}
+
+.filmes {
+    margin-top: 60px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.conteudo-destaque {
+    display: flex;
+    justify-items: center;
+    flex-direction: row;
+    font-family: 'Roboto';
+}
+
+.conteudo-destaque hr {
+    margin-top: 40px;
+    height: 2px;
+    width: 40vw;
+    justify-items: center;
+}
+
+.destaque {
+    justify-content: center;
+    text-align: center;
+    color: white;
+    opacity: 0.8;
+    text-shadow: 0 5px 5px #6d6d6d;
+}
+
+img {
+    border-radius: 5%;
+    width: 200px;
+    height: 260px;
+    display: block;
+}
+
+.filme_atual {
+    display: flex;
+    margin: auto;
+    margin-top: 65px;
+    margin-bottom: 100px;
+}
+
+.filme_descricao {
+    margin-top: 20vh;
+    display: flex;
+    align-items: center;
+    margin-left: 15vw;
+    margin-right: 15vw;
+    border-width: 5px;
+    border-radius: 80px;
+    border-color: darkgrey;
+    border-style: solid;
+    flex-direction: column;
+}
+
+.descricao_filme {
+    color: grey;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.elementosdescricao {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.entrada-json {
+    margin-left: 25px;
+    margin-right: 25px;
+    color: blue;
+}
+
+.sinopse {
+    display: flex;
+    color: grey;
+}
+
+.divisao-carrossel {
+    margin-top: 50px;
+    width: 90vw;
+}
+
+.populares {
+    flex-direction: column;
+    margin-top: 30px;
+    display: flex;
+}
+
+.cabecalho-populares {
+    margin-left: 5vw;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.cabecalho-adicionados {
+    margin-left: 5vw;
+    margin-top: 50px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.estrela {
+    height: 55px;
+    width: 55px
+}
+
+.titulo-populares {
+    font-family: 'Roboto';
+    margin-left: 20px;
+    font-size: 40px;
+    color: rgba(136, 136, 136, 1)
+}
+
+.titulosFilmes {
+    color: white;
+    width: 200px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Roboto';
+    opacity: 0.7;
+    text-shadow: #6d6d6d;
+}
+
+.ultimosTitulosFilmes {
+    color: white;
+    width: 200px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Roboto';
+    opacity: 0.8;
+    text-shadow: #000000;
+}
+
+.populares-fila-um {
+    display: flex;
+    flex-direction: row;
+    justify-items: auto;
+    justify-content: space-evenly;
+    margin-left: -80px;
+}
+
+.populares-fila-dois {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: -80px;
+}
+
+.item-populares {
+    margin-top: 10px;
+}
+
+.ultimos-adicionados {
+    background-color: rgba(106, 106, 106, 0.21)
+}
+
+.ultimos-adicionar-filmes {
+    margin-left: 5vw;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+.filtrado {
+    display: none;
+}
+/* .div-search img {
+    margin-left: 30px;
+} */
+.titulo-pesquisados {
+    font-family: 'Roboto';
+    margin-left: 20px;
+    font-size: 40px;
+    color: rgba(136, 136, 136, 1)
+}
+.direitos  {
+    align-items: center;
+    vertical-align: auto;
+    justify-content: space-evenly;
+    display: flex;
+    height: 50px;
+    width: 100vw;
+    margin-top: 90px;
+    background-color: rgba(106, 106, 106, 0.21);
+}
+.texto-direitos {
+    color: white;
+    font-size: 20px;
+    margin-left: 5vw;
+    width: 50vw;
+}
+.texto-direitos-dois{
+    color: white;
+    font-size: 20px;
+    width: 50vw;
+    margin-left: 15vw;
+}
+@media (max-width: 1400px) {
+
+    img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .div-populares-1 {
+        margin-left: calc(((50vw - (180px*3))/4)*-1);
+    }
+
+    .populares-fila-um {
+
+        margin-left: -60px;
+    }
+
+    .populares-fila-dois {
+        margin-left: -60px;
+    }
+}
+
+@media (max-width: 1250px) {
+
+    img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .div-populares-1 {
+        margin-left: calc(((50vw - (160*3))/4)*-1);
+    }
+
+    .populares-fila-um {
+
+        margin-left: -40px;
+    }
+
+    .populares-fila-dois {
+        margin-left: -40px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .cabecalho {
+        height: 60px;
+    }
+
+    img {
+        width: 140px;
+        height: 140px;
+
+    }
+
+    .div-populares-1 {
+        margin-left: calc(((50vw - (140*3))/4)*-1);
+    }
+
+    .populares-fila-um {
+
+        margin-left: -40px;
+    }
+
+    .populares-fila-dois {
+        margin-left: -40px;
+    }
+}

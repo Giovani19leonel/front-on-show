@@ -20,7 +20,7 @@ Main();
 function GetReloadHome() {
     tituloHome.addEventListener('click', function(e)
     {
-        window.location.href = 'http://127.0.0.1:5500/index.html';
+        window.location.href = 'http://127.0.0.1:5500/views/index.html';
     })
 }
 function MenuBar(x) {
@@ -69,7 +69,7 @@ function MenuListener() {
                 localStorage.setItem('operation', JSON.stringify('menu-filmes'));
                 localStorage.setItem('category', JSON.stringify(e.target.id));
                 localStorage.setItem('main-page', JSON.stringify(false));
-                window.location.href = 'http://127.0.0.1:5500/index.html';
+                window.location.href = 'http://127.0.0.1:5500/views/index.html';
             }
         });
     })
@@ -79,5 +79,5 @@ function GetSearchFilme() {
     localStorage.setItem('operation', JSON.stringify('search'));
     localStorage.setItem('pesquisado', JSON.stringify(pesquisado));
     localStorage.setItem('main-page', JSON.stringify(false));
-    window.location.href = 'http://127.0.0.1:5500/index.html';
+    window.location.href = 'http://127.0.0.1:5500/views/index.html';
 }
