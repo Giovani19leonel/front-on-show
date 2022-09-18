@@ -7,9 +7,43 @@
 
 <body>
     <header>
-        <h1 class="titulo">ON-SHOW</h1>
+        <div class="cabecalho">
+            <div class="menu-sanduiche">
+                <div class="container" onclick="MenuBar(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <div class="menu" id="lista-menu">
+                    <ul class="lista-menu">
+                        <li style="margin-top:7px;" id="ACAO" alt="Ação">AÇÃO</li>
+                        <hr>
+                        <li id="AVENTURA" alt="Aventura">AVENTURA</li>
+                        <hr>
+                        <li id="COMEDIA" alt="Comédia">COMÉDIA</li>
+                        <hr>
+                        <li id="DRAMA" alt="Drama">DRAMA</li>
+                        <hr>
+                        <li id="ROMANCE" alt="Romance">ROMANCE</li>
+                        <hr>
+                        <li id="SUSPENSE" alt="Suspense">SUSPENSE</li>
+                        <hr>
+                        <li id="TERROR" alt="Terror">TERROR</li>
+                        <hr>
+                        <li style="margin-bottom: 7px;" id="SERIES" alt="Séries">SÉRIES</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="div-titulo">
+                <h1 class="titulo" id="title">ON-SHOW</h1>
+            </div>
+            <div class="conteudo-pesquisa">
+                <img src="/icones/pesquisar.png" class="icone-pesquisa">
+                <input type="search" placeholder="Pesquisar" oninput="GetSearchFilme()" id="entrada" style="cursor:text">
+            </div>
+        </div>
     </header>
-    <main>
+    <main style="display:flex">
         <div class="filme_descricao">
             <img id="filme_pagina_2" class="filme_atual">
             <div class="descricao_filme">
@@ -24,7 +58,7 @@
                     <h2>Ano:</h2>
                     <h2 class="entrada-json" id="ano"></h2>
                 </div>
-                <video src="homemdeferro.mp4" autoplay controls></video>
+                <video src="" autoplay controls></video>
             </div>
             <div class="sinopse">
                 <h2 style="margin-left: 25px;">Sinopse:</h2>

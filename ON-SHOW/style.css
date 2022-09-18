@@ -1,5 +1,7 @@
 html {
     display: flex;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 body {
@@ -18,7 +20,6 @@ main {
 .main-home {
     display: flex;
 }
-
 header {
     width: 100vw;
     top: 0;
@@ -63,6 +64,8 @@ header {
 
 .lista-menu {
     list-style: none;
+    display: flex;
+    flex-direction: column;
     text-align: start;
     opacity: 0;
     background-color: #141212;
@@ -117,15 +120,19 @@ hr {
     -webkit-transform: rotate(45deg) translate(-8px, -8px);
     transform: rotate(45deg) translate(-8px, -8px);
 }
-
+.div-titulo {
+    width: 100vw;
+    margin-right: -235px;
+    display: flex;
+    justify-content: center;
+}
 .titulo {
     cursor: default;
     font-family: 'Roboto';
     color: white;
     text-align: center;
     font-size: 40px;
-    width: 100vw;
-    margin-right: -175px;
+    width: 250px;
     justify-content: center;
     display: flex;
     flex-direction: column;
@@ -167,7 +174,7 @@ hr {
 .conteudo-pesquisa input {
     border: 0px;
     height: 35px;
-    width: 200px;
+    width: 250px;
     border-radius: 25px;
     font-size: 22px;
     font-weight: bold;
@@ -254,6 +261,9 @@ img {
 
 .descricao_filme {
     color: grey;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .elementosdescricao {
@@ -360,12 +370,43 @@ img {
 
 ul {
     list-style: none;
+    display: flex;
 }
 
 .filtrado {
     display: none;
 }
-
+/* .div-search img {
+    margin-left: 30px;
+} */
+.titulo-pesquisados {
+    font-family: 'Roboto';
+    margin-left: 20px;
+    font-size: 40px;
+    color: rgba(136, 136, 136, 1)
+}
+.direitos  {
+    align-items: center;
+    vertical-align: auto;
+    justify-content: space-evenly;
+    display: flex;
+    height: 50px;
+    width: 100vw;
+    margin-top: 90px;
+    background-color: rgba(106, 106, 106, 0.21);
+}
+.texto-direitos {
+    color: white;
+    font-size: 20px;
+    margin-left: 5vw;
+    width: 50vw;
+}
+.texto-direitos-dois{
+    color: white;
+    font-size: 20px;
+    width: 50vw;
+    margin-left: 15vw;
+}
 @media (max-width: 1400px) {
 
     img {

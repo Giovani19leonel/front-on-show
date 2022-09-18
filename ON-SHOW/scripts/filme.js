@@ -1,45 +1,83 @@
-let text = localStorage.getItem("testJSON");
-let obj = JSON.parse(text);
-filme_atual = document.getElementById("filme_pagina_2");
-filme_atual.src = obj[0].filme
-console.log(obj[1].filme_id)
-
+// --------------------------------- DATA -----------------------------------
+var filmeTitulo = localStorage.getItem('titulo-filme'); filmeTitulo = JSON.parse(filmeTitulo);
+var filme_atual = document.getElementById("filme_pagina_2");
 var pagina_genero = document.getElementById("genero");
 var pagina_nota = document.getElementById("nota");
 var pagina_duracao = document.getElementById("duracao");
 var pagina_ano = document.getElementById("ano");
 var pagina_sinopse = document.getElementById("sinopse-filme");
-var pagina_filme = document.getElementById("filme-video")
-
-teste = fetch("../dados.json")
-    .then(response => {
-        return response.json();
-    })
-    .then(jsondata => {
-        let dados = jsondata.descricao
-        for (let i = 0; i < dados.length; i++) {
-            if (dados[i].titulo == obj[1].filme_id) {
-                console.log(dados[i].id)
-                pagina_ano.innerText = dados[i].ano
-                pagina_genero.innerText = dados[i].genero
-                pagina_duracao.innerText = dados[i].duracao
-                pagina_nota.innerText = dados[i].nota
-                pagina_sinopse.innerText = dados[i].sinopse
-                pagina_filme.style.display = "flex"
-                pagina_filme.src = dados[i].video
-            }
-        }
-
-    });
-
-var type = "filme";
-var imdb = "tt5272052";
-var season = "";
-var episode = "";
-warezPlugin(type, imdb, season, episode);
-function warezPlugin(type, imdb, season, episode) {
-    if (type == "filme") { season = ""; episode = ""; } else { if (season !== "") { season = "/" + season; } if (episode !== "") { episode = "/" + episode; } }
-    var frame = document.getElementById('embedWarezCdn');
-    frame.innerHTML += '<iframe src="https://embed.warezcdn.com/' + type + '/' + imdb + season + episode + '" scrolling="no" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" + style="height:800px; width:800px;"></iframe>';
+var pagina_filme = document.getElementById("filme-video");
+var tituloHome = document.getElementById("title");
+var lista_menu = document.getElementById("lista-menu");
+// --------------------------------- DATA -----------------------------------
+function Main() {
+    GetFilmeData(filmeTitulo)
+    GetReloadHome()
+    MenuListener();
 }
+Main();
 
+function GetReloadHome() {
+    tituloHome.addEventListener('click', function(e)
+    {
+        window.location.href = 'http://127.0.0.1:5500/index.html';
+    })
+}
+function MenuBar(x) {
+    x.classList.toggle("change");
+    $(".menu")[0].classList.toggle("change")
+    $(".menu").toggle("change")
+};
+
+async function GetFilmeData(titulo) {
+    var requestJson = 
+    {
+        Titulo: titulo
+    }
+    if(requestJson.Titulo != null)
+    {
+        await fetch('https://localhost:8001/main/filmes',
+        {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify(requestJson)
+        })
+        .then((response) => response.json())
+        .then((data) =>
+        {
+            console.log(data);
+            $("#filme_pagina_2").attr("src", data.catalogo)
+            pagina_ano.innerText = data.ano;
+            pagina_genero.innerText = data.genero;
+            pagina_duracao.innerText = data.duracao;
+            pagina_nota.innerText = data.nota;
+            pagina_sinopse.innerText = data.sinopse;
+            $("#filme-video").css("display", "flex");
+            $("#filme-video").attr("src", data.video)
+        })
+    }
+}
+function MenuListener() {
+    lista_menu.addEventListener('click',
+        function (e) {
+            let lstMenu = ['ACAO','AVENTURA','COMEDIA','DRAMA','ROMANCE','SUSPENSE','TERROR','SERIES']
+            lstMenu.forEach(x => {
+            if(e.target.id==x)
+            {
+                localStorage.setItem('operation', JSON.stringify('menu-filmes'));
+                localStorage.setItem('category', JSON.stringify(e.target.id));
+                localStorage.setItem('main-page', JSON.stringify(false));
+                window.location.href = 'http://127.0.0.1:5500/index.html';
+            }
+        });
+    })
+}
+function GetSearchFilme() {
+    pesquisado = $("#entrada").val();
+    localStorage.setItem('operation', JSON.stringify('search'));
+    localStorage.setItem('pesquisado', JSON.stringify(pesquisado));
+    localStorage.setItem('main-page', JSON.stringify(false));
+    window.location.href = 'http://127.0.0.1:5500/index.html';
+}

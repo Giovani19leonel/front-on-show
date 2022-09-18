@@ -10,14 +10,14 @@
     <header>
         <div class="cabecalho">
             <div class="menu-sanduiche">
-                <div class="container" onclick="myFunction(this)">
+                <div class="container" onclick="MenuBar(this)">
                     <div class="bar1"></div>
                     <div class="bar2"></div>
                     <div class="bar3"></div>
                 </div>
                 <div class="menu" id="lista-menu">
                     <ul class="lista-menu">
-                        <li style="margin-top:7px;" id="ACAO">AÇÃO</li>
+                        <li style="margin-top:7px;" id="ACAO" alt="Ação">AÇÃO</li>
                         <hr>
                         <li id="AVENTURA" alt="Aventura">AVENTURA</li>
                         <hr>
@@ -31,14 +31,16 @@
                         <hr>
                         <li id="TERROR" alt="Terror">TERROR</li>
                         <hr>
-                        <li style="margin-bottom: 7px;" id="SERIES">SÉRIES</li>
+                        <li style="margin-bottom: 7px;" id="SERIES" alt="Séries">SÉRIES</li>
                     </ul>
                 </div>
             </div>
-            <h1 class="titulo">ON-SHOW</h1>
+            <div class="div-titulo">
+                <h1 class="titulo" id="title">ON-SHOW</h1>
+            </div>
             <div class="conteudo-pesquisa">
                 <img src="/icones/pesquisar.png" class="icone-pesquisa">
-                <input type="search" placeholder="Pesquisar" oninput="pesquisar()" id="entrada" style="cursor:text">
+                <input type="search" placeholder="Pesquisar" oninput="GetSearchFilme()" id="entrada" style="cursor:text">
             </div>
         </div>
     </header>
@@ -108,46 +110,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <!-- <a href="http://127.0.0.1:5501/pagina2/filme.html">
-            <div id="lista_filme">
-            </div>
-        </a> -->
-        <div id="home-acao" class="filtrado acao">
-            <h1 style="color: white; text-align: center;">ACÃO</h1>
-            <div>
-                <ul class="populares-fila-um" id="acao-fila-1">
-                </ul>
-                <ul class="populares-fila-dois" id="acao-fila-2">
-                </ul>
-                <ul class="populares-fila-um" id="acao-fila-3">
-                </ul>
-                <ul class="populares-fila-dois" id="acao-fila-4">   
-                </ul>
-                <ul class="populares-fila-dois" id="acao-fila-5">
-                </ul>
-            </div>
-        </div>
-        <div id="home-aventura" class="filtrado aventura">
-            <h1 style="color: white;">AVENTURA</h1>
-        </div>
-        <div id="home-comedia" class="filtrado comedia">
-            <h1 style="color: white;">COMEDIA</h1>
-        </div>
-        <div id="home-drama" class="filtrado drama">
-            <h1 style="color: white;">DRAMA</h1>
-        </div>
-        <div id="home-romance" class="filtrado romance">
-            <h1 style="color: white;">ROMANCE</h1>
-        </div>
-        <div id="home-suspense" class="filtrado suspense">
-            <h1 style="color: white;">SUSPENSE</h1>
-        </div>
-        <div id="home-terror" class="filtrado terror">
-            <h1 style="color: white;">TERROR</h1>
-        </div>
-        <div id="home-series" class="filtrado series">
-            <h1 style="color: white;">SERIES</h1>
         </div>
     </main>
     <script src="./scripts/carousel.js"></script>
